@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Alert,
   StyleSheet,
+  Button,
 } from "react-native";
 import api from "../axios/axios";
 
@@ -15,30 +16,31 @@ export default function Login() {
     password: "",
   });
 
-async function handleLogin(){
-    console.log(user)
+  async function handleLogin() {
+    console.log(user);
     await api.postLogin(user).then(
-        (response)=>{
-            console.log(response.data.message)
-            Alert(response.data.message)
-        },(error)=>{
-            console.log(error)
-        }
-    )
-}
+      (response) => {
+        Alert.alert("OK", response.data.message);
+      },
+      (error) => {
+        Alert.alert("Erro", error.response.data.message);
+      }
+    );
+  }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Faça Login</Text>
-      <TextInput style={styles.input}
-        placeholder="Email"
+      <Text style={styles.title}> Faça Login</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="EMAIL"
         value={user.email}
         onChangeText={(value) => {
           setUser({ ...user, email: value });
         }}
       />
       <TextInput
-      style={styles.input}
+        style={styles.input}
         placeholder="Senha"
         value={user.password}
         onChangeText={(value) => {
@@ -51,7 +53,6 @@ async function handleLogin(){
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -62,17 +63,16 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: "bold",
   },
-  input:{
-    borderColor:'pink',
-    width:'100%',
-    height:40,
-    borderBottomWidth:1,
-    marginBottom:20,
-    paddingHorizontal:10
+  input: {
+    width: "100%",
+    height: 40,
+    borderBottomWidth: 1,
+    marginBottom: 20,
+    paddingHorizontal: 10,
   },
-  button:{
-    backgroundColor:"pink",
-    padding:10,
-    borderRadius:5
+  button: {
+    backgroundColor: "pink",
+    padding: 10,
+    borderRadius: 5,
   },
 });

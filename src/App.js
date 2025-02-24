@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
-import Login from "./screens/Login"
+import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import Login from "./screens/Login";
 
 export default function App() {
   return (
@@ -12,30 +12,44 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems:"center"
+    justifyContent: 'center',
+    alignItems: "center"
   },
-  box1: {
-    width: "50",
-    height: "50",
-    backgroundColor: "#C7B2C5",
+  box1:{
+    width:50,
+    height:50,
+    backgroundColor: 'purple'
   },
-  box2: {
-    width: "50",
-    height: "50",
-    backgroundColor: "#C4CDDF",
+  box2:{
+    width:50,
+    height:50,
+    backgroundColor: 'blue'
+
   },
-  box3: {
-    width: "50",
-    height: "50",
-    backgroundColor: "#C0E8F9",
+  box3:{
+    width:50,
+    height:50,
+    backgroundColor: 'violet'
+
   },
-  box4: {
-    width: "50",
-    height: "50",
-    backgroundColor: "#BCDEE5",
+  box4:{
+    width:50,
+    height:50,
+    backgroundColor: 'pink',
   },
   row:{
-    flexDirection:"row",
+    flexDirection:'row'
   },
+  text:{
+    fontSize:28,
+    fontWeight:'bold'
+  },
+  input:{
+    borderWidth:1,
+    borderColor: 'purple',
+    width:'80%',
+    padding:10,
+    marginVertical:10,
+  }
+
 });
