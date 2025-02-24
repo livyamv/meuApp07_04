@@ -1,15 +1,19 @@
+
 import React, {useState} from "react";
 import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet, Button } from "react-native";
 import api from '../axios/axios'
 
-export default function Login(){
+export default function Cadastro(){
     const [user, setUser] = useState ({ 
-        email: "",
+        cpf: "",
+        email:"",
         password: "",
+        name:"",
+        data_nascimento:""
     });
 
-    async function handleLogin(){
-        await api.postLogin(user).then(
+    async function handleCadastro(){
+        await api.postUser(user).then(
             (response)=>{
                 Alert.alert('OK',response.data.message)
             },(error)=>{
@@ -20,10 +24,18 @@ export default function Login(){
         
     return(
         <View style={styles.container}>
-        <Text style={styles.title}> Faça Login</Text>
+        <Text style={styles.title}>Cadastre-se</Text>
         <TextInput 
         style={styles.input}
-        placeholder="Email"
+        placeholder="CPF"
+        value={user.cpf}
+        onChangeText={(value)=> {
+            setUser({...user, cpf: value});
+        }}
+        />
+        <TextInput
+        style={styles.input}
+        placeholder="E-mail"
         value={user.email}
         onChangeText={(value)=> {
             setUser({...user, email: value});
@@ -37,8 +49,24 @@ export default function Login(){
             setUser({...user, password: value});
         }}
         />
-        <TouchableOpacity onPress={handleLogin} style={styles.button}>
-            <Text>Entrar</Text>
+        <TextInput
+        style={styles.input}
+        placeholder="Nome"
+        value={user.name}
+        onChangeText={(value)=> {
+            setUser({...user, name: value});
+        }}
+        />
+        <TextInput
+        style={styles.input}
+        placeholder="Data de Nascimento"
+        value={user.data_nascimento}
+        onChangeText={(value)=> {
+            setUser({...user, data_nascimento: value});
+        }}
+        />
+        <TouchableOpacity onPress={handleCadastro} style={styles.button}>
+            <Text>Cadastrar</Text>
         </TouchableOpacity>
         </View>
     );
@@ -61,7 +89,7 @@ export default function Login(){
         paddingHorizontal:10
     },
     button:{
-        backgroundColor: 'pink',
+        backgroundColor: '#C77FFF',
         padding:10,
         borderRadius:5
     }
