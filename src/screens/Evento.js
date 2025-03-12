@@ -10,17 +10,17 @@ import {
 } from "react-native";
 import api from "../axios/axios";
 
-export default function Cadastro({ navigation }) {
-  const [user, setUser] = useState({
-    cpf: "",
-    email: "",
-    password: "",
-    name: "",
-    data_nascimento: "",
+export default function Evento({ navigation }) {
+  const [evento, setUser] = useState({
+    nome: "",
+    descricao: "",
+    data_hora: "",
+    local: "",
+    fk_id_organizador: "",
   });
 
-  async function handleCadastro() {
-    await api.postUser(user).then(
+  async function handleEvento() {
+    await api.postEvento(evento).then(
       (response) => {
         Alert.alert("OK", response.data.message);
       },
@@ -32,53 +32,54 @@ export default function Cadastro({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Cadastre-se</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="CPF"
-        value={user.cpf}
-        onChangeText={(value) => {
-          setUser({ ...user, cpf: value });
-        }}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="E-mail"
-        value={user.email}
-        onChangeText={(value) => {
-          setUser({ ...user, email: value });
-        }}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Senha"
-        value={user.password}
-        onChangeText={(value) => {
-          setUser({ ...user, password: value });
-        }}
-      />
+      <Text style={styles.title}> Cadastre seu evento!</Text>
       <TextInput
         style={styles.input}
         placeholder="Nome"
-        value={user.name}
+        value={evento.nome}
         onChangeText={(value) => {
-          setUser({ ...user, name: value });
+          setUser({ ...evento, nome: value });
         }}
       />
       <TextInput
         style={styles.input}
-        placeholder="Data de Nascimento"
-        value={user.data_nascimento}
+        placeholder="Descrição"
+        value={evento.descricao}
         onChangeText={(value) => {
-          setUser({ ...user, data_nascimento: value });
+          setUser({ ...evento, descricao: value });
         }}
       />
-      <TouchableOpacity onPress={handleCadastro} style={styles.button}>
+      <TextInput
+        style={styles.input}
+        placeholder="Data e hora"
+        value={evento.data_hora}
+        onChangeText={(value) => {
+          setUser({ ...evento, data_hora: value });
+        }}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Local"
+        value={evento.local}
+        onChangeText={(value) => {
+          setUser({ ...evento, local: value });
+        }}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Id_organizador"
+        value={evento.fk_id_organizador}
+        onChangeText={(value) => {
+          setUser({ ...evento, fk_id_organizador: value });
+        }}
+      />
+      <TouchableOpacity onPress={handleEvento} style={styles.button}>
         <Text>Cadastrar</Text>
       </TouchableOpacity>
       <Button
-        title="Voltar para Login"
-        onPress={() => navigation.navigate("Login")}
+        title="Voltar para Home"
+        onPress={() => navigation.navigate("Home")}
+        color="#C77FFF"
       />
     </View>
   );

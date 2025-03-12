@@ -10,17 +10,18 @@ import {
 } from "react-native";
 import api from "../axios/axios";
 
-export default function Login({ navigation }) {
-  const [user, setUser] = useState({
+export default function Organizador({ navigation }) {
+  const [organizador, setUser] = useState({
+    nome: "",
     email: "",
-    password: "",
+    senha: "",
+    telefone: "",
   });
 
-  async function handleLogin() {
-    await api.postLogin(user).then(
+  async function handleOrganizador() {
+    await api.postOrganizador(organizador).then(
       (response) => {
         Alert.alert("OK", response.data.message);
-        navigation.navigate("Home");
       },
       (error) => {
         Alert.alert("Erro", error.response.data.error);
@@ -30,29 +31,45 @@ export default function Login({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}> Faça Login</Text>
+      <Text style={styles.title}> Faça Cadastro</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Nome"
+        value={organizador.nome}
+        onChangeText={(value) => {
+          setUser({ ...organizador, nome: value });
+        }}
+      />
       <TextInput
         style={styles.input}
         placeholder="Email"
-        value={user.email}
+        value={organizador.email}
         onChangeText={(value) => {
-          setUser({ ...user, email: value });
+          setUser({ ...organizador, email: value });
         }}
       />
       <TextInput
         style={styles.input}
         placeholder="Senha"
-        value={user.password}
+        value={organizador.senha}
         onChangeText={(value) => {
-          setUser({ ...user, password: value });
+          setUser({ ...organizador, senha: value });
         }}
       />
-      <TouchableOpacity onPress={handleLogin} style={styles.button}>
-        <Text>Entrar</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Telefone"
+        value={organizador.telefone}
+        onChangeText={(value) => {
+          setUser({ ...organizador, telefone: value });
+        }}
+      />
+      <TouchableOpacity onPress={handleOrganizador} style={styles.button}>
+        <Text>Cadastrar</Text>
       </TouchableOpacity>
       <Button
-        title="Cadastro"
-        onPress={() => navigation.navigate("Cadastro")}
+        title="Voltar para Home"
+        onPress={() => navigation.navigate("Home")}
         color="#C77FFF"
       />
     </View>
