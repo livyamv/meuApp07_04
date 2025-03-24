@@ -7,15 +7,15 @@ import Home from "../src/screens/Home";
 import Evento from "../src/screens/Evento";
 import Organizador from "../src/screens/Organizador";
 import Ingresso from "../src/screens/Ingressos";
-
+import Layout from "./components/Layout";
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Cadastro" component={Cadastro} />
+      <Stack.Navigator initialRouteName="Login" screenOptions={{headerShown:false}}>
+        <Stack.Screen name="Login" component={()=>(<Layout><Login/></Layout>)} />
+        <Stack.Screen name="Cadastro" component={()=>(<Layout><Cadastro/></Layout>)} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Evento" component={Evento} />
         <Stack.Screen name="Organizador" component={Organizador} />
