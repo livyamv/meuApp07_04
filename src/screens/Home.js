@@ -19,6 +19,7 @@ function Home({ navigation }) {
         onPress={() => navigation.navigate("Ingresso")}
         color="#C77FFF"
       />
+      
     </View>
   );
 }
