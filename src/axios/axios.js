@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://10.89.240.70:5000/api/v1/",
+  baseURL: "http://10.89.240.79:5000/api/v1/",
   headers: {
     accept: "application/json",
   },
@@ -14,7 +14,8 @@ const sheets = {
   postEvento: (evento) => api.post("evento", evento),
   postIngresso: (ingresso) => api.post("ingresso", ingresso),
   getEventos:() => api.get("evento"),
-  getIngressosPorEvento:(idEvento) => api.get(`ingresso/evento/${idEvento}`)
+  getIngressosPorEvento:(idEvento) => api.get(`ingresso/evento/${idEvento}`),
+  createIngresso: (dados) => api.post("/ingresso", dados)
 };
 
 export default sheets;

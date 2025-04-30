@@ -17,32 +17,35 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown:false}}>
-        <Stack.Screen
-          name="Login"
-          component={() => (
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Login">
+          {() => (
             <Layout>
               <Login />
             </Layout>
           )}
-        />
-        <Stack.Screen
-          name="Cadastro"
-          component={() => (
+        </Stack.Screen>
+
+        <Stack.Screen name="Cadastro">
+          {() => (
             <Layout>
               <Cadastro />
             </Layout>
           )}
-        />
+        </Stack.Screen>
+
+        <Stack.Screen name="EventosScreens">
+          {() => (
+            <Layout>
+              <EventosScreens />
+            </Layout>
+          )}
+        </Stack.Screen>
+
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Evento" component={Evento} />
-        <Stack.Screen name="Organizador"component={Organizador}/>
+        <Stack.Screen name="Organizador" component={Organizador} />
         <Stack.Screen name="Ingresso" component={Ingresso} />
-        <Stack.Screen name="EventosScreens">{()=>(
-          <Layout>
-            <EventosScreens/>
-          </Layout>
-        )}</Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
