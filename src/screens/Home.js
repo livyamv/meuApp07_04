@@ -5,7 +5,7 @@ function Home({ navigation }) {
   return (
     <View style={styles.container}>
       <Button
-        title="Evento"
+        title="Cadastre seu evento!!"
         onPress={() => navigation.navigate("Evento")}
         color="#C77FFF"
       />
@@ -17,6 +17,11 @@ function Home({ navigation }) {
       <Button
         title="Ingresso"
         onPress={() => navigation.navigate("Ingresso")}
+        color="#C77FFF"
+      />
+      <Button
+        title="Eventos"
+        onPress={() => navigation.navigate("EventosScreens")}
         color="#C77FFF"
       />
       

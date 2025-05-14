@@ -9,9 +9,10 @@ import {
   Button,
 } from "react-native";
 import api from "../axios/axios";
+import DateTimePicker from "../components/DateTimePicker";
 
 export default function Evento({ navigation }) {
-  const [evento, setUser] = useState({
+  const [evento, setEvento] = useState({
     nome: "",
     descricao: "",
     data_hora: "",
@@ -38,7 +39,7 @@ export default function Evento({ navigation }) {
         placeholder="Nome"
         value={evento.nome}
         onChangeText={(value) => {
-          setUser({ ...evento, nome: value });
+          setEvento({ ...evento, nome: value });
         }}
       />
       <TextInput
@@ -46,23 +47,25 @@ export default function Evento({ navigation }) {
         placeholder="Descrição"
         value={evento.descricao}
         onChangeText={(value) => {
-          setUser({ ...evento, descricao: value });
+          setEvento({ ...evento, descricao: value });
         }}
       />
-      <TextInput
-        style={styles.input}
-        placeholder="Data e hora"
-        value={evento.data_hora}
-        onChangeText={(value) => {
-          setUser({ ...evento, data_hora: value });
-        }}
+      <DateTimePicker
+        type={"datetime"}
+        buttonTitle={
+          evento.data_hora === ""
+            ? "Selecione a data do evento"
+            : evento.data_hora.toLocaleString()
+        }
+        setValue={setEvento}
+        dateKey={"data_hora"}
       />
       <TextInput
         style={styles.input}
         placeholder="Local"
         value={evento.local}
         onChangeText={(value) => {
-          setUser({ ...evento, local: value });
+          setEvento({ ...evento, local: value });
         }}
       />
       <TextInput
@@ -70,7 +73,7 @@ export default function Evento({ navigation }) {
         placeholder="Id_organizador"
         value={evento.fk_id_organizador}
         onChangeText={(value) => {
-          setUser({ ...evento, fk_id_organizador: value });
+          setEvento({ ...evento, fk_id_organizador: value });
         }}
       />
       <TouchableOpacity onPress={handleEvento} style={styles.button}>

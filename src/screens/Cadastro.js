@@ -79,7 +79,7 @@ export default function Cadastro() {
       <TouchableOpacity onPress={handleCadastro} style={styles.button}>
         <Text>Cadastrar</Text>
       </TouchableOpacity>
-      <Button
+      <Button color={"#C77FFF"} 
         title="Voltar para Login"
         onPress={() => navigation.navigate("Login")}
       />

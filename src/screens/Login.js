@@ -22,18 +22,19 @@ export default function Login() {
   });
 
   async function saveToken(token) {
-    await SecureStore.setItemAsync("token",token);
-    console.log(token);
+    await SecureStore.setItemAsync("token", token);
   }
 
   async function handleLogin() {
     await api.postLogin(user).then(
       (response) => {
         Alert.alert("OK", response.data.message);
-        saveToken(response.data.token)
+
+        saveToken(response.data.token);
         navigation.navigate("EventosScreens");
       },
       (error) => {
+        console.log(error.response.data.error);
         Alert.alert("Erro", error.response.data.error);
       }
     );
@@ -66,7 +67,7 @@ export default function Login() {
           <Ionicons
             name={user.showPassword ? "eye-off" : "eye"}
             size={24}
-            color="#C77FFF"
+            color="black"
           />
         </TouchableOpacity>
       </View>
